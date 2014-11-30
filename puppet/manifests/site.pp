@@ -152,7 +152,7 @@ class oradb_12c {
       group_oper             => 'oper',
       zipExtract             => true,
       downloadDir            => hiera('oracle_download_dir'),
-      remoteFile             => true,
+      remoteFile             => false,
       puppetDownloadMntPoint => hiera('oracle_source'),
     }
 
