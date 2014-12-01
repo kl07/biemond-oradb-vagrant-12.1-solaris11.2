@@ -206,6 +206,13 @@ class oradb_12c {
       require                 => Oradb::Database['oraDb'],
     }
 
+    oradb::autostartdatabase{ 'autostart oracle':
+      oracleHome              => hiera('oracle_home_dir'),
+      user                    => hiera('oracle_os_user'),
+      dbName                  => hiera('oracle_database_name'),
+      require                 => Oradb::Dbactions['start oraDb'],
+    }
+
 }
 
 class oradb_init {
