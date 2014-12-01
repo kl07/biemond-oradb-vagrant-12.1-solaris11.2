@@ -8,8 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "dbsol" , primary: true do |dbsol|
     dbsol.vm.box = "solaris11_2-x86_64"
-    dbsol.vm.box_url = "/Users/edwin/projects/packer-vagrant-builder/build/solaris11_2-x86_64.box"
-
+    dbsol.vm.box_url = "https://dl.dropboxusercontent.com/s/uxe9huy08gziwx1/solaris11_2-x86_64.box"
     dbsol.vm.hostname = "dbsol.example.com"
 
     dbsol.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
