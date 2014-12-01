@@ -191,7 +191,7 @@ class oradb_12c {
       characterSet            => "AL32UTF8",
       nationalCharacterSet    => "UTF8",
       emConfiguration         => 'NONE',
-      memoryTotal             => "1200",
+      memoryTotal             => "800",
       sampleSchema            => 'FALSE',
       databaseType            => "MULTIPURPOSE",
       require                 => Oradb::Listener['start listener'],

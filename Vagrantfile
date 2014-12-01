@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #    dbsol.vm.network :private_network, ip: "10.10.10.10"
 
     dbsol.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "3096"]
+      vb.customize ["modifyvm", :id, "--memory", "3512"]
       vb.customize ["modifyvm", :id, "--name", "dbsol"]
     end
 
