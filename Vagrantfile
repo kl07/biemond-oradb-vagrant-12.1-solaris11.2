@@ -15,31 +15,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dbsol.vm.synced_folder "/Users/edwin/software", "/software"
 #    dbsol.vm.synced_folder "/Users/edwin/software", "/software" , type: "nfs"
 
-    dbsol.vm.network "forwarded_port", guest: 1521, host: 1521
-
-#    dbsol.vm.network :private_network, ip: "10.10.10.10"
+    # dbsol.vm.network "forwarded_port", guest: 1521, host: 1521
+    dbsol.ssh.insert_key = false
+    dbsol.vm.network :private_network, ip: "10.10.10.10"
 
     dbsol.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "3512"]
       vb.customize ["modifyvm", :id, "--name", "dbsol"]
     end
 
-#    dbsol.vm.provision :shell, :inline => "ln -sf /vagrant/puppet/hiera.yaml /etc/puppet/hiera.yaml"
-#
-#    dbsol.vm.provision :puppet do |puppet|
-#      puppet.manifests_path    = "puppet/manifests"
-#      puppet.module_path       = "puppet/modules"
-#      puppet.manifest_file     = "site.pp"
-#      puppet.options           = "--verbose --trace --debug --hiera_config /vagrant/puppet/hiera.yaml"
-#
-#      puppet.facter = {
-#        "environment" => "development",
-#        "vm_type"     => "vagrant",
-#      }
-#
-#    end
+   # dbsol.vm.provision :shell, :inline => "ln -sf /vagrant/puppet/hiera.yaml /etc/puppet/hiera.yaml"
 
+   # dbsol.vm.provision :puppet do |puppet|
+   #   puppet.manifests_path    = "puppet/manifests"
+   #   puppet.module_path       = "puppet/modules"
+   #   puppet.manifest_file     = "site.pp"
+   #   puppet.options           = "--verbose --trace --debug --hiera_config /vagrant/puppet/hiera.yaml"
+
+   #   puppet.facter = {
+   #     "environment" => "development",
+   #     "vm_type"     => "vagrant",
+   #   }
+   # end
   end
-
-
 end

@@ -14,20 +14,26 @@ class oradb_os {
 
   # /etc/inet/hosts
   host{'dbsol.example.com':
+    ip           => "10.10.10.10",
+    host_aliases => 'dbsol',
+    require      => Host['solaris-vagrant'],
+  }
+  # /etc/inet/hosts
+  host{'localhost':
     ip           => "127.0.0.1",
-    host_aliases => 'dbsol,loghost,localhost.localdomain,localhost4,localhost4.localdomain4',
+    host_aliases => 'loghost,localhost.localdomain,localhost4,localhost4.localdomain4',
     require      => Host['solaris-vagrant'],
   }
 
-  # /etc/hosts
-  exec { "remove localhost":
-    command => "/usr/bin/sed -e '/'127.0.0.1'/ d' /etc/hosts > /tmp/hosts.tmp && mv /tmp/hosts.tmp /etc/hosts",
-  }
+  # # /etc/hosts
+  # exec { "remove localhost":
+  #   command => "/usr/bin/sed -e '/'127.0.0.1'/ d' /etc/hosts > /tmp/hosts.tmp && mv /tmp/hosts.tmp /etc/hosts",
+  # }
 
-  exec { "add localhost":
-    command => "/bin/echo '127.0.0.1 ${fqdn} ${hostname} localhost loghost' >> /etc/hosts",
-    require => Exec["remove localhost"],
-  }
+  # exec { "add localhost":
+  #   command => "/bin/echo '127.0.0.1 ${fqdn} ${hostname} localhost loghost' >> /etc/hosts",
+  #   require => Exec["remove localhost"],
+  # }
 
   $groups = ['oinstall','dba' ,'oper' ]
 
@@ -144,7 +150,6 @@ class oradb_12c {
       oracleBase             => hiera('oracle_base_dir'),
       oracleHome             => hiera('oracle_home_dir'),
       userBaseDir            => '/home',
-      createUser             => true,
       bashProfile            => false,
       user                   => hiera('oracle_os_user'),
       group                  => hiera('oracle_os_group'),

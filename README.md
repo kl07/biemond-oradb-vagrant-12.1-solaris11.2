@@ -29,9 +29,6 @@ Set swap and startup puppet
 - zfs set volsize=6g rpool/swap
 - /opt/csw/bin/puppet apply /vagrant/puppet/manifests/site.pp --trace --verbose --hiera_config /vagrant/puppet/hiera.yaml --modulepath /vagrant/puppet/modules
 
-### Port forwarding
-- 1521
-
 ### Accounts
 - root password vagrant123
 - vagrant password 1vagrant
